@@ -8,6 +8,7 @@ import NewStore from "./pages/NewStore/NewStore";
 import StoreInfo from "./pages/StoreInfo/StoreInfo";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -19,7 +20,7 @@ function App() {
         <Route path="/StoreInfo" element={<StoreInfo />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;
