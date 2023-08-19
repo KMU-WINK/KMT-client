@@ -8,13 +8,7 @@ export const StoreName1 = styled.div`
     font-size:20px;
 `;
 
-export const StoreName2 = styled.div`
-    margin-top: 5%;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    font-size:20px;
-`;
+
 
 export const SaveButtonDiv = styled.div`
     margin-top: 2% ;
