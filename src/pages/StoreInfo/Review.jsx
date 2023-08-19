@@ -15,7 +15,7 @@ import {
 } from "./StoreInfoStyle";
 import Image from "../../asset/img/defaultImg.png";
 import { useNavigate } from "react-router-dom";
-export default function Review() {
+export default function Review(props) {
   const [restaurantName, setRestaurantName] = useState("");
   const [rating, setRating] = useState(0);
 
@@ -28,7 +28,7 @@ export default function Review() {
 
   const addReview = async () => {
     const response = await fetch(
-      "http://3.34.99.129:8080/api/restaurant/1/reviews",
+      `http://3.34.99.129:8080/api/restaurant/${props.id}/reviews`,
       {
         method: "GET",
         headers: {
@@ -54,6 +54,8 @@ export default function Review() {
   };
   useEffect(() => {
     addReview();
+    // setRestaurantName(props.storeName);
+    console.log(props);
   }, []);
 
   return (
