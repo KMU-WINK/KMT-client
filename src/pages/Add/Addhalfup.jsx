@@ -14,10 +14,10 @@ import {
   InputWrapper,
   Input,
 } from "./AddStyle";
-
+import { useNavigate } from "react-router-dom";
 function Addhalfup() {
   const fileInput = useRef();
-
+  const navigate = useNavigate();
   const documentUpload = () => {
     fileInput.current.click();
   };
@@ -36,7 +36,7 @@ function Addhalfup() {
   const [dis, setDis] = useState(true);
 
   useEffect(() => {
-    setRestaurantName("gun");
+    setRestaurantName("gun"); // todo
     if (
       rating > 0 &&
       reviewText.length > 0 &&
@@ -70,10 +70,11 @@ function Addhalfup() {
 
     if (data.ok) {
       // 요청이 성공적으로 처리됨
-      await alert("success");
+      alert("success");
+      navigate("/Map");
     } else {
       // 요청이 실패함
-      await alert("fail");
+      alert("fail");
     }
   };
 

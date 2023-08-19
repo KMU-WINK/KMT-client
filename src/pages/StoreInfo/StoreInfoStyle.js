@@ -66,3 +66,16 @@ export const InfoTime = styled.div`
   color: black;
   font-weight: 600;
 `;
+export const AddButton = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  font-size: 48px;
+  text-align: center;
+  line-height: 150%;
+  border-radius: 80px;
+  color: white;
+  background-color: #a9e0a8;
+`;

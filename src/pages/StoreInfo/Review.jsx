@@ -11,18 +11,24 @@ import {
   InfoTitle,
   InfoReview,
   InfoTime,
+  AddButton,
 } from "./StoreInfoStyle";
 import Image from "../../asset/img/defaultImg.png";
-
-export default function Review() {
+import { useNavigate } from "react-router-dom";
+export default function Review(props) {
   const [restaurantName, setRestaurantName] = useState("");
   const [rating, setRating] = useState(0);
+
+  const navigate = useNavigate();
+  const toAddPage = () => {
+    navigate("/Add");
+  };
 
   let [data, setData] = useState([]);
 
   const addReview = async () => {
     const response = await fetch(
-      "http://3.34.99.129:8080/api/restaurant/1/reviews",
+      `http://3.34.99.129:8080/api/restaurant/${props.id}/reviews`,
       {
         method: "GET",
         headers: {
@@ -48,6 +54,8 @@ export default function Review() {
   };
   useEffect(() => {
     addReview();
+    // setRestaurantName(props.storeName);
+    console.log(props);
   }, []);
 
   return (
@@ -73,6 +81,7 @@ export default function Review() {
             </ReviewCard>
           ))}
         </ReviewWrapper>
+        <AddButton onClick={toAddPage}>+</AddButton>
       </Container>
     </Wrapper>
   );
