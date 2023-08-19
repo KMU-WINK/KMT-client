@@ -20,15 +20,16 @@ export default function Review(props) {
   const [rating, setRating] = useState(0);
 
   const navigate = useNavigate();
-  const toAddPage = () => {
-    navigate("/Add");
+  const toAddPage = (id, storeName) => {
+    console.log("gugugu");
+    navigate("/Add", { state: { id, storeName } });
   };
 
   let [data, setData] = useState([]);
 
   const addReview = async () => {
     const response = await fetch(
-      `http://3.34.99.129:8080/api/restaurant/${props.id}/reviews`,
+      `http://3.34.99.129:8080/api/restaurant/${props.state.id}/reviews`,
       {
         method: "GET",
         headers: {
@@ -54,7 +55,7 @@ export default function Review(props) {
   };
   useEffect(() => {
     addReview();
-    // setRestaurantName(props.storeName);
+    setRestaurantName(props.state.storeName);
     console.log(props);
   }, []);
 
@@ -64,7 +65,7 @@ export default function Review(props) {
         <Header>
           {restaurantName.length === 0 ? "식당 이름" : restaurantName}
         </Header>
-        <Rating>{data && rating}</Rating>
+        <Rating>{data && (rating > 0 ? rating : "")}</Rating>
         <ReviewWrapper>
           {data?.map((item, index) => (
             <ReviewCard key={index}>
@@ -81,7 +82,11 @@ export default function Review(props) {
             </ReviewCard>
           ))}
         </ReviewWrapper>
-        <AddButton onClick={toAddPage}>+</AddButton>
+        <AddButton
+          onClick={() => toAddPage(props.state.id, props.state.storeName)}
+        >
+          +
+        </AddButton>
       </Container>
     </Wrapper>
   );

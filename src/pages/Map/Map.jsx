@@ -27,11 +27,11 @@ function Map() {
       .then(function (response) {
         setMarker(response.data);
       });
-    // setRestaurants(response.data);
+    // setRestaurants(response.data);ƒ
   };
 
   const getInfo = (id, storeName) => {
-    navigate("/StoreInfo", { state: {id, storeName} });
+    navigate("/StoreInfo", { state: { id, storeName } });
   };
 
   const setMarker = (data) => {

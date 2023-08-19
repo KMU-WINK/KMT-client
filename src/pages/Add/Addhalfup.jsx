@@ -15,7 +15,7 @@ import {
   Input,
 } from "./AddStyle";
 import { useNavigate } from "react-router-dom";
-function Addhalfup() {
+function Addhalfup(props) {
   const fileInput = useRef();
   const navigate = useNavigate();
   const documentUpload = () => {
@@ -36,7 +36,7 @@ function Addhalfup() {
   const [dis, setDis] = useState(true);
 
   useEffect(() => {
-    setRestaurantName("gun"); // todo
+    setRestaurantName(props.state.storeName); // todo
     if (
       rating > 0 &&
       reviewText.length > 0 &&
@@ -55,7 +55,7 @@ function Addhalfup() {
       isDelivery: deliveryOption,
       rate: rating,
       userId: -1,
-      restaurantId: 1,
+      restaurantId: props.state.id,
     };
     const response = fetch("http://3.34.99.129:8080/api/review", {
       method: "POST",
