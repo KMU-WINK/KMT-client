@@ -50,7 +50,6 @@ export const Savebtn = styled.button`
   height: 48px;
   border: none;
   background-color: #a9e0a8;
-
   border-radius: 20px;
   color: white;
 

@@ -1,33 +1,25 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
-
-
+import { Link } from "react-router-dom";
 
 export const LogoImage = styled.img`
-    margin-top: 10%;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
+  margin-top: 15%;
+  display: flex;
+  width: 90%;
 `;
 
-export const StartButtonDiv = styled.div`
-    margin-top: 20% ;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;    
-`;
 export const StartButton = styled.button`
-    width: 100px;
-    height: 40px;
-    background-color:#98C597;
-    border:none;
-    color: white;
-    border-radius:10px;
-    cursor:pointer;
+  width: 135px;
+  height: 50px;
+  background-color: #98c597;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 19px;
+  font-family: "Yeongdeok Snow Crab";
 `;
 
 export const CustomLink = styled(Link)`
-    text-decoration: none;
+  text-decoration: none;
+  margin-top: 18%;
 `;
-
-
