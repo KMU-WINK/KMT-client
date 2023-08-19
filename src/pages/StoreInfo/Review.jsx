@@ -11,12 +11,18 @@ import {
   InfoTitle,
   InfoReview,
   InfoTime,
+  AddButton,
 } from "./StoreInfoStyle";
 import Image from "../../asset/img/defaultImg.png";
-
+import { useNavigate } from "react-router-dom";
 export default function Review() {
   const [restaurantName, setRestaurantName] = useState("");
   const [rating, setRating] = useState(0);
+
+  const navigate = useNavigate();
+  const toAddPage = () => {
+    navigate("/Add");
+  };
 
   let [data, setData] = useState([]);
 
@@ -73,6 +79,7 @@ export default function Review() {
             </ReviewCard>
           ))}
         </ReviewWrapper>
+        <AddButton onClick={toAddPage}>+</AddButton>
       </Container>
     </Wrapper>
   );

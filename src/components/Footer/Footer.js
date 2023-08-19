@@ -18,16 +18,19 @@ export const UnderBar1 = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  align-items: center;
 `;
 export const UnderBar2 = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  align-items: center;
 `;
 export const UnderBar3 = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  align-items: center;
 `;
 
 export const UnderImage = styled.img`

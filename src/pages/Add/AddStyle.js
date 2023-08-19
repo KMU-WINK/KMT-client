@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20%;
+  padding: 0 16px;
 `;
 export const Container = styled.div`
   width: 100%;
@@ -12,17 +14,16 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 48px;
 `;
 
 export const Header = styled.div`
   width: 100%;
   font-size: 25px;
-  text-align: start;
-  display: flex;
+  text-align: center;
 `;
 export const TextStyle = styled.div`
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
   display: inline;
 `;
@@ -53,6 +54,7 @@ export const Savebtn = styled.button`
   opacity: 1;
   border-radius: 20px;
   color: white;
+  margin: 200px;
   &:disabled {
     opacity: 0.5;
   }
@@ -84,6 +86,9 @@ export const Default = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  > input {
+    font-size: 20px;
+  }
 `;
 export const PhotoWrapper = styled.div`
   display: flex;
