@@ -1,1 +1,10 @@
+@font-face {
+  font-family: "Yeongdeok Snow Crab";
+  font-style: normal;
+  font-weight: 400;
+  src: url("asset/fonts/Yeongdeok Snow Crab.ttf");
+}
 
+body {
+  font-family: "Yeongdeok Snow Crab";
+}

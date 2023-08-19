@@ -53,7 +53,6 @@ export const Savebtn = styled.button`
   opacity: 1;
   border-radius: 20px;
   color: white;
-
   &:disabled {
     opacity: 0.5;
   }
