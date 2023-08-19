@@ -50,12 +50,12 @@ export const Savebtn = styled.button`
   height: 48px;
   border: none;
   background-color: #a9e0a8;
-
+  opacity: 1;
   border-radius: 20px;
   color: white;
 
   &:disabled {
-    background-color: red;
+    opacity: 0.5;
   }
 `;
 
