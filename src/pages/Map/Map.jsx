@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as P from "../../components/Page/Page.js";
 import * as F from "../../components/Footer/Footer.js";
 import Home from '../../asset/img/Home.png';
 import Plus from '../../asset/img/+.png';
 import Information from '../../asset/img/Information.png';
-
+import axios from 'axios';
 
 
 const options = {
@@ -13,14 +13,67 @@ const options = {
   level: 3, //지도의 레벨(확대, 축소 정도)
 };
 
+var map;
+
 
 function Map() {
   const container = useRef(null); //지도를 담을 영역의 DOM 레퍼런스
 
+  const [loading, setLoading] = useState(false)
+  const [restaurants, setRestaurants] = useState([])
+
+    const getRestaurant = async() => {
+        const response = await axios.get('http://3.34.99.129:8080/api/restaurants').then(function(response) {
+            setMarker(response.data)
+        })
+        // setRestaurants(response.data);
+    }
+
+
+    const setMarker = (data) => {
+        console.log(data)
+        for (var i = 0; i < data.length; i++) {
+            var restaurant =  data[i]
+            console.log(restaurant)
+            var position = new window.kakao.maps.LatLng(restaurant.latitude, restaurant.longitude);
+
+            var marker = new window.kakao.maps.Marker({
+                map : map,
+                position: position,
+                clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+              });
+
+
+            // 인포윈도우를 생성합니다
+            var infowindow = new window.kakao.maps.InfoWindow({
+                content : restaurant.name,
+                removable : true
+            });
+
+            window.kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+            window.kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
+        }
+    }
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+
     useEffect(() => {
-    new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
-    return () => {};
-    }, []);
+        map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
+        getRestaurant();
+    }, [loading]);
 
     return (
     <P.Page

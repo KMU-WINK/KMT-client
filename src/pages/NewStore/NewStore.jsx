@@ -9,9 +9,6 @@ import Information from '../../asset/img/Information.png';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-
-
-
 const options = {
   //지도를 생성할 때 필요한 기본 옵션
   center: new window.kakao.maps.LatLng(37.611078, 126.995938), //지도의 중심좌표.

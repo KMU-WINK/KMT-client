@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from '../../asset/img/kookmin.png';
 import * as L from "./LogoStyle.js";
 import * as F from "../../components/Footer/Footer.js";
 import * as P from "../../components/Page/Page.js";
 import * as H from "../../components/Head/Head.js";
 import { Link  } from "react-router-dom";
+import axios from 'axios';
+
 
 
 export default function Logo() {

@@ -6,6 +6,7 @@ import Map from "./pages/Map/Map";
 import NewStore from "./pages/NewStore/NewStore";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -15,7 +16,7 @@ function App() {
         <Route path="/NewStore" element={<NewStore />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;
