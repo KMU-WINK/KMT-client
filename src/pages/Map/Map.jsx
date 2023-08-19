@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, } from "react";
 import * as P from "../../components/Page/Page.js";
 import * as F from "../../components/Footer/Footer.js";
 import Home from '../../asset/img/Home.png';
 import Plus from '../../asset/img/+.png';
 import Information from '../../asset/img/Information.png';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const options = {
@@ -21,7 +22,7 @@ function Map() {
 
   const [loading, setLoading] = useState(false)
   const [restaurants, setRestaurants] = useState([])
-
+  const navigate = useNavigate();
     const getRestaurant = async() => {
         const response = await axios.get('http://3.34.99.129:8080/api/restaurants').then(function(response) {
             setMarker(response.data)
@@ -29,8 +30,14 @@ function Map() {
         // setRestaurants(response.data);
     }
 
+    const getInfo = (id) => {
+        navigate("/StoreInfo", { state: id });
+    }
+
 
     const setMarker = (data) => {
+
+        
         console.log(data)
         for (var i = 0; i < data.length; i++) {
             var restaurant =  data[i]
@@ -46,20 +53,23 @@ function Map() {
 
             // 인포윈도우를 생성합니다
             var infowindow = new window.kakao.maps.InfoWindow({
-                content : restaurant.name,
+                // content : restaurant.name,
+                // content : `<div onClick={}>${restaurant.name}</div>`,
+
                 removable : true
             });
 
-            window.kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
-            window.kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            window.kakao.maps.event.addListener(marker, 'click', makeOverListener(restaurant.id));
+            // window.kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
         }
     }
 
     // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, marker, infowindow) {
+function makeOverListener(id) {
     return function() {
-        infowindow.open(map, marker);
+        // infowindow.open(map, marker);
+        getInfo(id);
     };
 }
 

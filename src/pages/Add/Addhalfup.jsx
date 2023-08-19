@@ -24,7 +24,7 @@ function Addhalfup() {
   const [restaurantName, setRestaurantName] = useState("");
   const [rating, setRating] = useState(0);
   const [deliveryOption, setDeliveryOption] = useState(false);
-  const [deliveryTime, setDeliveryTime] = useState("");
+  const [deliveryTime, setDeliveryTime] = useState(0);
   const [foodImage, setFoodImage] = useState(null);
   const [reviewText, setReviewText] = useState("");
 
@@ -47,6 +47,35 @@ function Addhalfup() {
       setDis(true);
     }
   }, [rating, reviewText, deliveryOption, deliveryTime]);
+
+  const addReview = async () => {
+    const reviewData = {
+      comment: reviewText,
+      deliveryTime: deliveryTime * 1,
+      isDelivery: deliveryOption,
+      rate: rating,
+      userId: -1,
+      restaurantId: 1,
+    };
+    const response = fetch("http://3.34.99.129:8080/api/review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewData),
+    });
+    const data = await response;
+    await console.log(data);
+    await console.log(data.ok);
+
+    if (data.ok) {
+      // 요청이 성공적으로 처리됨
+      await alert("success");
+    } else {
+      // 요청이 실패함
+      await alert("fail");
+    }
+  };
 
   return (
     <Wrapper>
@@ -100,7 +129,7 @@ function Addhalfup() {
             required
           />
         </Default>
-        <Savebtn type="submit" disabled={dis}>
+        <Savebtn type="submit" disabled={dis} onClick={addReview}>
           저장
         </Savebtn>
       </Container>
